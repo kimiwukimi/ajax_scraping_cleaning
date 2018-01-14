@@ -1,11 +1,12 @@
 import requests
 import json
 import re
+import os
+
 from bs4 import BeautifulSoup
 from random import randint
 from time import sleep, strftime, localtime
 from os.path import dirname, abspath
-import os
 
 ############################
 
@@ -270,20 +271,20 @@ with open('parsed.txt','a+') as fp:
     parsed_list = fp.read().splitlines()
 
 with open(reviews_file) as fp, open('parsed.txt', 'a+', 1) as parsed_fp, \
-	open('failed_parsing.txt', 'a+', 1) as failed_parsing_fp:
+    open('failed_parsing.txt', 'a+', 1) as failed_parsing_fp:
     test_lines = 0
     for line in fp:
         review = json.loads(line.strip(), encoding = 'utf-8')
         review_id = review[1]
         if review_id not in parsed_list:
-		
+        
             #print '================================='
-			try:
-				parse_html(line)
-				parsed_fp.write(review_id + '\n')  # write succeed file to parsed.txt
-			except:
-				failed_parsing_fp.write(line)
-				
+            try:
+                parse_html(line)
+                parsed_fp.write(review_id + '\n')  # write succeed file to parsed.txt
+            except:
+                failed_parsing_fp.write(line)
+                
         else:
             print 'skipping', review_id
        
