@@ -2,7 +2,7 @@
 Disclaimer:  This project is only a demonstration of what are the problems and how to solve them when retrieving data from the web. Please do not violate any website's term of use. Do this at your own risks.
 ## Example Task
 Retrieve all the attributes (about 25, shown in the page below) from top 1000 reviewers' reviews on A website since 8/1/2016. 
-> I am just taking Amazon's website as an example. I will never encourage anyone to violate A website's term of use.
+> I am just taking A's website as an example. I will never encourage anyone to violate A website's term of use.
 
 ![example_reviews](pics/example_reviews.png?raw=true "Title")
 	
@@ -37,6 +37,8 @@ Retrieve all the attributes (about 25, shown in the page below) from top 1000 re
 - This step is the most difficult part due to the scale (120,000 pages) of the example.
 1. IP ban
 	- use [VPN](https://en.wikipedia.org/wiki/Virtual_private_network), preferably the ones that has a lot of servers and ones that can can change ip automatically.
+	- Change User-Agent to avoid been banned.
+
 2. "I'm not a robot" test
 
 ![i_am_not_a_robot](pics/i_am_not_a_robot.jpg?raw=true "Title")
