@@ -1,12 +1,14 @@
 # Ajax Scraping and cleaning
 Disclaimer:  This project is only a demonstration of what are the problems and how to solve them when retrieving data from the web. Please do not violate any website's term of use. Do this at your own risks.
 ## Example Task
-Retrieve all the attributes (about 25, shown in the page below) from top 1000 reviewers' reviews of some websites since 8/1/2016. 
-> I am just taking Amazon's website as an example. I will never encourage anyone to violate Amazon website's term of use.
+Retrieve all the attributes (about 25, shown in the page below) from top 1000 reviewers' reviews on A website since 8/1/2016. 
+> I am just taking Amazon's website as an example. I will never encourage anyone to violate A website's term of use.
 
 ![example_reviews](pics/example_reviews.png?raw=true "Title")
 	
 - Scale: 120,000 pages of reviews (by the time I tested at Oct. 2016)
+> The example code in the repository are done at 2016. Since the webpage changes often, they are not working now. But you could still could modify it to finish the example task.
+
 ## Steps
 1. Retrieval top 1000 reviewers' id 
 2. Retrieval all reviews' id of these 1000 reviewers
@@ -14,7 +16,7 @@ Retrieve all the attributes (about 25, shown in the page below) from top 1000 re
 4. Parse fields and store into database
 
 ### Step1: Retrieval top reviewers id 
-- This is the easiest part. Simply use Requests and Regular Expression will do.
+- This is the easiest part. Simply use [Requests](http://docs.python-requests.org/en/master/) and [Regular Expression](https://docs.python.org/2/library/re.html) will do.
 - [Example code](get_reviewers_id.py)
 
 ![example_top1000_reviewers](pics/example_top1000_reviewers.png?raw=true "Title")
@@ -28,17 +30,16 @@ Retrieve all the attributes (about 25, shown in the page below) from top 1000 re
 - **Change [User-Agent](https://en.wikipedia.org/wiki/User_agent)** to avoid been banned.
 	- Use a list of user-agents and changes requests' user-agent could mitigate the probability of been detected scraping. 
 
-![example_review_id](example_review_id.png?raw=true "Title")
-- Library used: Selenium, Regular Expression 
+![example_review_id](pics/example_review_id.png?raw=true "Title")
 - [Example code](get_page.py)
 
 ### Step3: Download reviews pages
 - This step is the most difficult part due to the scale (120,000 pages) of the example.
 1. IP ban
-	- use VPN, preferably the ones that has a lot of servers and ones that can can change ip automatically.
+	- use [VPN](https://en.wikipedia.org/wiki/Virtual_private_network), preferably the ones that has a lot of servers and ones that can can change ip automatically.
 2. "I'm not a robot" test
 
-![i_am_not_a_robot](i_am_not_a_robot.jpg?raw=true "Title")
+![i_am_not_a_robot](pics/i_am_not_a_robot.jpg?raw=true "Title")
 	
 - Probably not the best way, but you could use chromium to click it manually. Once you clicked it manually, it will not show up possibly in hours.
 - Library used: Requests, Regular Expression
@@ -48,15 +49,12 @@ Retrieve all the attributes (about 25, shown in the page below) from top 1000 re
 ### Step4: Parse and store into database
 - Major problem: unexpected fields might show up when parsing.
 	- Consequence: 
-		- parsing rules might change when sees new fields that disrupts bs4 rules that you previous set. 
+		- parsing rules might change when sees new fields that disrupts [BeautifulSoup](https://www.crummy.com/software/BeautifulSoup/bs4/doc/) rules that you previous set. 
 	- Suggested solution: 
-		1. The better way, in my opinion, would be spend more time browsing reviews pages and gather as much field in advance as possible. The less surprises, the easier to parse with bs4. 
+		1. The better way, in my opinion, would be spend more time browsing reviews pages and gather as much field in advance as possible. The less surprises, the easier to parse with BeautifulSoup. 
 		2. Then use absolute path more, instead of relative ones.
 
-
-- Could use NoSQL or SQL database to store data (including previous steps).
-
-- Library used: BeautifulSoup, Regular Expression
+- Could use [NoSQL](https://en.wikipedia.org/wiki/NoSQL) or SQLite database to store data (including previous steps).
 - [Example code](parse.py)
 
 ##  Possible Problems
